@@ -85,7 +85,7 @@ public class ProductAdapter extends BaseAdapter {
         ImageView productImage = (ImageView) convertView.findViewById(R.id.productImage);
         Picasso.with(con).cancelRequest(productImage);
         String imageUrl = result.getImage().replace("http", "https");
-        Picasso.with(con).load(imageUrl).error(R.drawable.cross).into(productImage);
+        Picasso.with(con).load(imageUrl).error(R.drawable.cross).resize(100,100).into(productImage);
 
         /*if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) con.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
