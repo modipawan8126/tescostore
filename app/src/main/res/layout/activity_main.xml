@@ -12,6 +12,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:layout_margin="20px"
         android:orientation="vertical">
 
 
@@ -23,11 +24,15 @@
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="8dp" />
 
+        <ImageView
+            android:id="@+id/tescostoreimage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/tesco_store_image"/>
+
         <ListView
             android:id="@+id/productList"
             android:layout_width="match_parent"
-            android:layout_marginLeft="20px"
-            android:layout_marginRight="20px"
             android:layout_height="wrap_content"></ListView>
 
     </LinearLayout>
