@@ -47,9 +47,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        View footerView = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.activity_productlist_footer, null, false);
+       /* View footerView = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.activity_productlist_footer, null, false);*/
 
-       TextView prev = (TextView) footerView.findViewById(R.id.prev);
+       TextView prev = (TextView) findViewById(R.id.prev);
        /* ImageButton prev = (ImageButton) footerView.findViewById(R.id.prev);*/
         prev.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,17 +64,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-       TextView next = (TextView) footerView.findViewById(R.id.next);
+       TextView next = (TextView) findViewById(R.id.next);
       /*  ImageButton next = (ImageButton) footerView.findViewById(R.id.next);*/
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int offset = MemoryCache.getInstance().getSearchOffset();
-                if (offset == 0) {
-                    offset = 0;
-                } else {
-                    offset = offset + 1;
-                }
+                offset = offset + 1;
                 getProducts(MemoryCache.getInstance().getQueryString(),offset);
             }
         });
@@ -94,9 +90,9 @@ public class MainActivity extends AppCompatActivity {
             ProductAdapter ad = new ProductAdapter(MainActivity.this, productSearchResult.getUk().getGhs().getProducts().getResults());
             yourListViewReference.setAdapter(ad);
 
-            View footerView = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.activity_productlist_footer, null, false);
+            /*View footerView = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.activity_productlist_footer, null, false);
 
-            yourListViewReference.addFooterView(footerView, null, false);
+            yourListViewReference.addFooterView(footerView, null, false);*/
         }
 
     }

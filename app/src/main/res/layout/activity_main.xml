@@ -22,13 +22,42 @@
             android:layout_height="63dp"
             android:queryHint="search product"
             tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="8dp" />
+            tools:layout_editor_absoluteY="8dp"
+            android:iconifiedByDefault="false"/>
 
-        <ImageView
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingBottom="7dip"
+        android:paddingTop="7dip">
+        <TextView
+            android:id="@+id/prev"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dip"
+            android:text="prev"
+            android:textSize="14dip"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dip"
+            android:text="next"
+            android:textSize="14dip"
+            android:textStyle="bold" />
+
+        </LinearLayout>
+
+       <ImageView
             android:id="@+id/tescostoreimage"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/tesco_store_image"/>
+            android:layout_height="match_parent"
+            android:src="@drawable/tesco_store_image"
+            android:scaleType="fitXY"/>
 
         <ListView
             android:id="@+id/productList"
