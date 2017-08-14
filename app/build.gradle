@@ -15,6 +15,15 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField 'int', 'limit', '10'
+        }
+
+        debug {
+            buildConfigField 'int', 'limit', '10'
+            buildConfigField 'String', 'tescoSubscriptionKey', '"Ocp-Apim-Subscription-Key"'
+            buildConfigField 'String', 'tescoSubscriptionValue', '"6ca323f879bd4893bcb961480a0c618f"'
+            buildConfigField 'String', 'GROCERY_SEARCH_SERVICE_URL', '"https://dev.tescolabs.com/grocery/products/?"'
+            buildConfigField 'String', 'PRODUCT_DETAIL_SERVICE_URL', '"https://dev.tescolabs.com/product/?tpnb="'
         }
     }
 }

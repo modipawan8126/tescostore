@@ -13,7 +13,7 @@ public class MemoryCache implements Serializable {
 
     int searchOffset;
 
-
+    int totalResultCount;
 
     String queryString;
 
@@ -45,4 +45,11 @@ public class MemoryCache implements Serializable {
         this.queryString = queryString;
     }
 
+    public int getTotalResultCount() {
+        return totalResultCount;
+    }
+
+    public void setTotalResultCount(int totalResultCount) {
+        this.totalResultCount = totalResultCount;
+    }
 }

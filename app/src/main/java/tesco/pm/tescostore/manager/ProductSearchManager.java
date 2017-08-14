@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
+import tesco.pm.tescostore.BuildConfig;
 import tesco.pm.tescostore.constant.Constants;
 import tesco.pm.tescostore.connector.ProductSearchAsyncTask;
 import tesco.pm.tescostore.domain.product.detail.ProductDetailResult;
@@ -17,9 +18,9 @@ import tesco.pm.tescostore.domain.search.result.ProductSearchResult;
 
 public class ProductSearchManager {
 
-    private static final String GROCERY_SEARCH_SERVICE_URL = "https://dev.tescolabs.com/grocery/products/?";
+    /*private static final String GROCERY_SEARCH_SERVICE_URL = "https://dev.tescolabs.com/grocery/products/?";
     private static final String PRODUCT_DETAIL_SERVICE_URL = "https://dev.tescolabs.com/product/?tpnb=";
-    private static final int limit = 10;
+    private static final int limit = 10;*/
 
 
     public ProductSearchManager() {
@@ -31,7 +32,7 @@ public class ProductSearchManager {
         ProductSearchResult productResult = null;
         try {
             StringBuilder urlSb = new StringBuilder();
-            urlSb.append(GROCERY_SEARCH_SERVICE_URL).append("query=").append(queryString).append("&offset=").append(offset).append("&limit=").append(limit);
+            urlSb.append(BuildConfig.GROCERY_SEARCH_SERVICE_URL).append("query=").append(queryString).append("&offset=").append(offset).append("&limit=").append(BuildConfig.limit);
 
             Map<String, String> queryData = new HashMap<String, String>();
             queryData.put(Constants.SEARCH_QUERY, queryString);
@@ -55,7 +56,7 @@ public class ProductSearchManager {
         ProductDetailResult productDetailResult = null;
         try {
             StringBuilder urlSb = new StringBuilder();
-            urlSb.append(PRODUCT_DETAIL_SERVICE_URL).append(tpnb);
+            urlSb.append(BuildConfig.PRODUCT_DETAIL_SERVICE_URL).append(tpnb);
 
             Map<String, String> queryData = new HashMap<String, String>();
             queryData.put(Constants.SERVICE_URL, urlSb.toString());

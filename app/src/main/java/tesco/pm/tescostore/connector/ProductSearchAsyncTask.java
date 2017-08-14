@@ -14,6 +14,7 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.util.Map;
 
+import tesco.pm.tescostore.BuildConfig;
 import tesco.pm.tescostore.constant.Constants;
 
 /**
@@ -62,7 +63,7 @@ public class ProductSearchAsyncTask extends AsyncTask<Void, Void, String> {
             URL url = new URL(serviceUrl);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod(queryData.get(Constants.HTTP_METHOD));
-            conn.setRequestProperty("Ocp-Apim-Subscription-Key", "6ca323f879bd4893bcb961480a0c618f");
+            conn.setRequestProperty(BuildConfig.tescoSubscriptionKey, BuildConfig.tescoSubscriptionValue);
             InputStream in = new BufferedInputStream(conn.getInputStream());
             response = convertStreamToString(in);
         } catch (MalformedURLException e) {
