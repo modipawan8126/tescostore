@@ -16,6 +16,8 @@ public class Results
 
     private String[] description;
 
+    private String PromotionDescription;
+
     private String AverageSellingUnitWeight;
 
     private String name;
@@ -142,6 +144,14 @@ public class Results
     public String toString()
     {
         return "ClassPojo [ContentsMeasureType = "+ContentsMeasureType+", unitprice = "+unitprice+", price = "+price+", UnitQuantity = "+UnitQuantity+", description = "+description+", AverageSellingUnitWeight = "+AverageSellingUnitWeight+", name = "+name+", UnitOfSale = "+UnitOfSale+", image = "+image+", ContentsQuantity = "+ContentsQuantity+", tpnb = "+tpnb+"]";
+    }
+
+    public String getPromotionDescription() {
+        return PromotionDescription;
+    }
+
+    public void setPromotionDescription(String promotionDescription) {
+        PromotionDescription = promotionDescription;
     }
 }
 

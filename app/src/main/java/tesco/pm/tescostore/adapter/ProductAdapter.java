@@ -60,6 +60,15 @@ public class ProductAdapter extends BaseAdapter {
         TextView productName = (TextView) convertView.findViewById(R.id.productNameAdapter);
         productName.setText(result.getName());
 
+        TextView productPrice = (TextView) convertView.findViewById(R.id.productPriceAdapter);
+        productPrice.setText("£ " + result.getPrice());
+
+        String promotionDescription = result.getPromotionDescription();
+        if (promotionDescription != null && promotionDescription.trim().length() != 0) {
+            TextView promotionTV = (TextView) convertView.findViewById(R.id.productPromotionAdapter);
+            promotionTV.setText(promotionDescription);
+        }
+
         productName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,7 +80,9 @@ public class ProductAdapter extends BaseAdapter {
         ImageView productImage = (ImageView) convertView.findViewById(R.id.productImage);
         Picasso.with(con).cancelRequest(productImage);
         String imageUrl = result.getImage().replace("http", "https");
-        Picasso.with(con).load(imageUrl).error(R.drawable.default_product).resize(110, 110).into(productImage);
+        imageUrl = imageUrl.replace("90x90", "540x540");
+        //Log.d(this.getClass().getSimpleName(), imageUrl);
+        Picasso.with(con).load(imageUrl).error(R.drawable.default_product).resize(620,540).into(productImage);
 
         productImage.setOnClickListener(new View.OnClickListener() {
             @Override

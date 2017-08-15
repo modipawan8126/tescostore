@@ -6,23 +6,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     tools:context="tesco.pm.tescostore.MainActivity">
 
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_margin="20px"
+        android:layout_margin="5px"
         android:orientation="vertical">
 
 
         <SearchView
             android:id="@+id/searchQuery"
-            android:layout_width="366dp"
-            android:layout_height="63dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:queryHint="search product"
-            tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="8dp"
+            android:gravity="left"
             android:iconifiedByDefault="false"/>
 
     <!--<LinearLayout
@@ -58,7 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="10dp" >
+            android:layout_marginLeft="20dp" >
 
         <TextView
             android:id="@+id/totalCount"
@@ -95,12 +95,12 @@
         </RelativeLayout>
 
 
-        <ImageView
+        <!--<ImageView
             android:id="@+id/tescostoreimage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/tesco_store_image"
-            android:scaleType="fitXY"/>
+            android:scaleType="fitXY"/>-->
 
         <ListView
             android:id="@+id/productList"

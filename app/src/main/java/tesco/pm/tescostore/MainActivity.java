@@ -108,8 +108,8 @@ public class MainActivity extends AppCompatActivity {
         MemoryCache.getInstance().setQueryString(query);
         searchManager = new ProductSearchManager();
         ProductSearchResult productSearchResult =  searchManager.searchProduct(query, offset);
-        ImageView storeImage = (ImageView) findViewById(R.id.tescostoreimage);
-        storeImage.setVisibility(View.GONE);
+        /*ImageView storeImage = (ImageView) findViewById(R.id.tescostoreimage);
+        storeImage.setVisibility(View.GONE);*/
 
         if (productSearchResult != null) {
             String totalProductCount = productSearchResult.getUk().getGhs().getProducts().getTotals().getAll();
