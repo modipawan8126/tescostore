@@ -100,6 +100,7 @@ public class ProductAdapter extends BaseAdapter {
         intent.putExtra(Constants.PRODUCT_TPNB, result.getTpnb());
         intent.putExtra(Constants.PRODUCT_IMAGE_URL, result.getImage());
         intent.putExtra(Constants.PRODUCT_NAME, result.getName());
+        intent.putExtra(Constants.PRODUCT_PRICE, result.getPrice());
         con.startActivity(intent);
     }
 
