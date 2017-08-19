@@ -18,10 +18,30 @@ public class MemoryCache implements Serializable {
     String queryString;
 
 
+    String storeSearchQuery;
+    int storeSearchOffset;
+    int storeResultCount;
+
     private static final MemoryCache cache = new MemoryCache();
 
     private MemoryCache() {
 
+    }
+
+    public int getStoreSearchOffset() {
+        return storeSearchOffset;
+    }
+
+    public void setStoreSearchOffset(int storeSearchOffset) {
+        this.storeSearchOffset = storeSearchOffset;
+    }
+
+    public int getStoreResultCount() {
+        return storeResultCount;
+    }
+
+    public void setStoreResultCount(int storeResultCount) {
+        this.storeResultCount = storeResultCount;
     }
 
     public static MemoryCache getInstance() {
@@ -52,4 +72,13 @@ public class MemoryCache implements Serializable {
     public void setTotalResultCount(int totalResultCount) {
         this.totalResultCount = totalResultCount;
     }
+
+    public String getStoreSearchQuery() {
+        return storeSearchQuery;
+    }
+
+    public void setStoreSearchQuery(String storeSearchQuery) {
+        this.storeSearchQuery = storeSearchQuery;
+    }
+
 }

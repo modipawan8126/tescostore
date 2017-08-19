@@ -2,25 +2,18 @@ package tesco.pm.tescostore;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MotionEvent;
-import android.view.View;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import tesco.pm.tescostore.adapter.ProductAdapter;
 import tesco.pm.tescostore.adapter.ProductAttributeAdapter;
 import tesco.pm.tescostore.adapter.ProductAttributeObject;
 import tesco.pm.tescostore.constant.Constants;
 import tesco.pm.tescostore.domain.product.detail.ProductDetailResult;
-import tesco.pm.tescostore.domain.search.result.ProductSearchResult;
 import tesco.pm.tescostore.manager.ProductSearchManager;
 import tesco.pm.tescostore.view.ExpandableHeightListView;
 

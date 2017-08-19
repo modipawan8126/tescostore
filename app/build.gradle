@@ -24,6 +24,7 @@ android {
             buildConfigField 'String', 'tescoSubscriptionValue', '"6ca323f879bd4893bcb961480a0c618f"'
             buildConfigField 'String', 'GROCERY_SEARCH_SERVICE_URL', '"https://dev.tescolabs.com/grocery/products/?"'
             buildConfigField 'String', 'PRODUCT_DETAIL_SERVICE_URL', '"https://dev.tescolabs.com/product/?tpnb="'
+            buildConfigField 'String', 'STORE_SEARCH_SERVICE_URL', '"https://dev.tescolabs.com/locations/search?"'
         }
     }
 }
@@ -36,6 +37,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha7'
     compile 'com.google.code.gson:gson:2.3.1'
+    compile 'com.google.android.gms:play-services-maps:9.6.0'
     //compile 'com.android.volley:volley:1.0.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
     testCompile 'junit:junit:4.12'

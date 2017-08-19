@@ -8,9 +8,9 @@ import java.util.concurrent.ExecutionException;
 
 import tesco.pm.tescostore.BuildConfig;
 import tesco.pm.tescostore.constant.Constants;
-import tesco.pm.tescostore.connector.ProductSearchAsyncTask;
+import tesco.pm.tescostore.connector.SearchAsyncTask;
 import tesco.pm.tescostore.domain.product.detail.ProductDetailResult;
-import tesco.pm.tescostore.domain.search.result.ProductSearchResult;
+import tesco.pm.tescostore.domain.search.result.product.ProductSearchResult;
 
 /**
  * Created by pmodi4 on 8/12/2017.
@@ -39,7 +39,7 @@ public class ProductSearchManager {
             queryData.put(Constants.SERVICE_URL, urlSb.toString());
             queryData.put(Constants.HTTP_METHOD, "GET");
 
-            String jsonStr = (String) new ProductSearchAsyncTask(queryData).execute().get();
+            String jsonStr = (String) new SearchAsyncTask(queryData).execute().get();
             if (jsonStr != null && jsonStr.trim().length() != 0) {
                 productResult = convertProductSearchResultJsonToObject(jsonStr);
             }
@@ -62,7 +62,7 @@ public class ProductSearchManager {
             queryData.put(Constants.SERVICE_URL, urlSb.toString());
             queryData.put(Constants.HTTP_METHOD, "GET");
 
-            String jsonStr = (String) new ProductSearchAsyncTask(queryData).execute().get();
+            String jsonStr = (String) new SearchAsyncTask(queryData).execute().get();
             if (jsonStr != null && jsonStr.trim().length() != 0) {
                 productDetailResult = convertProductDetailResultJsonToObject(jsonStr);
             }

@@ -2,7 +2,6 @@ package tesco.pm.tescostore.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,7 @@ import com.squareup.picasso.Picasso;
 import tesco.pm.tescostore.ProductDetailActivity;
 import tesco.pm.tescostore.R;
 import tesco.pm.tescostore.constant.Constants;
-import tesco.pm.tescostore.domain.search.result.Results;
+import tesco.pm.tescostore.domain.search.result.product.Results;
 
 
 /**

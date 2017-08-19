@@ -1,4 +1,4 @@
-package tesco.pm.tescostore.domain.search.result;
+package tesco.pm.tescostore.domain.search.result.product;
 
 /**
  * Created by pmodi4 on 8/12/2017.

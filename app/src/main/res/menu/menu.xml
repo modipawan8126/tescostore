@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/storeLocator"
+        android:icon="@mipmap/marker"
+        android:orderInCategory="100"
+        app:showAsAction="always"
+        android:title="StoreLocator"/>
+        android:title="" />
+    <!--<item android:id="@+id/help"
+        android:icon="@drawable/ic_help"
+        android:title="@string/help" />-->
+</menu>

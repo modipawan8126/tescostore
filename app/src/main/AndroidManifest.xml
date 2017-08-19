@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="tesco.pm.tescostore">
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
 
     <application
@@ -11,7 +12,14 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:windowSoftInputMode="stateVisible|adjustPan" android:name=".MainActivity">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBEouG9JtVchALWz53xXM0CKhvDP59Ax5Y" />
+
+        <activity
+            android:name=".MainActivity"
+            android:windowSoftInputMode="stateVisible|adjustPan">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,13 +28,23 @@
             </intent-filter>
         </activity>
         <activity android:name=".ProductDetailActivity">
-            <!--<intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
+        </activity>
+
+        <activity android:name=".StoreLocatorActivity" android:windowSoftInputMode="stateVisible|adjustPan">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+
+            </activity>
+        <activity android:name=".MapActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".StoreLocatorActivity" />
+
         </activity>
     </application>
 

@@ -21,22 +21,22 @@ import tesco.pm.tescostore.constant.Constants;
  * Created by pmodi4 on 8/12/2017.
  */
 
-public class ProductSearchAsyncTask extends AsyncTask<Void, Void, String> {
+public class SearchAsyncTask extends AsyncTask<Void, Void, String> {
 
 
     private static final String CONTENT_TYPE = "Content-Type";
     private static final String APPLICATION_JSON = "application/json; charset=UTF-8";
     private static final String HTTP_METHOD_GET = "GET";
-    private String TAG = ProductSearchAsyncTask.class.getSimpleName();
+    private String TAG = SearchAsyncTask.class.getSimpleName();
 
 
     Map<String, String> queryData;
 
-    public ProductSearchAsyncTask() {
+    public SearchAsyncTask() {
 
     }
 
-    public ProductSearchAsyncTask(Map<String, String> qd) {
+    public SearchAsyncTask(Map<String, String> qd) {
         queryData = qd;
     }
 

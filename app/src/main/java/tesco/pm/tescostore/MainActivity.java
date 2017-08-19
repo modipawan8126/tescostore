@@ -1,21 +1,20 @@
 package tesco.pm.tescostore;
 
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
 import tesco.pm.tescostore.adapter.ProductAdapter;
-
 import tesco.pm.tescostore.cache.MemoryCache;
-import tesco.pm.tescostore.domain.search.result.ProductSearchResult;
+import tesco.pm.tescostore.domain.search.result.product.ProductSearchResult;
 import tesco.pm.tescostore.manager.ProductSearchManager;
 
 public class MainActivity extends AppCompatActivity {
@@ -25,9 +24,36 @@ public class MainActivity extends AppCompatActivity {
     TextView totalCount;
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.storeLocator:
+                openStoreLocator();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void openStoreLocator() {
+        Log.d(this.getClass().getSimpleName(), "Opening StoreLocator Activity");
+        Intent intent = new Intent(MainActivity.this, StoreLocatorActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
         final TextView next = (TextView) findViewById(R.id.next);
         next.setVisibility(View.GONE);
         final TextView prev = (TextView) findViewById(R.id.prev);
@@ -74,13 +100,12 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     offset = offset - 1;
                     MemoryCache.getInstance().setSearchOffset(offset);
-                    getProducts(MemoryCache.getInstance().getQueryString(),offset );
+                    getProducts(MemoryCache.getInstance().getQueryString(), offset);
                     next.setEnabled(true);
                 }
 
             }
         });
-
 
 
         next.setOnClickListener(new View.OnClickListener() {
@@ -107,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
     private void getProducts(String query, int offset) {
         MemoryCache.getInstance().setQueryString(query);
         searchManager = new ProductSearchManager();
-        ProductSearchResult productSearchResult =  searchManager.searchProduct(query, offset);
+        ProductSearchResult productSearchResult = searchManager.searchProduct(query, offset);
         /*ImageView storeImage = (ImageView) findViewById(R.id.tescostoreimage);
         storeImage.setVisibility(View.GONE);*/
 
@@ -124,10 +149,6 @@ public class MainActivity extends AppCompatActivity {
             ListView yourListViewReference = (ListView) findViewById(R.id.productList);
             ProductAdapter ad = new ProductAdapter(MainActivity.this, productSearchResult.getUk().getGhs().getProducts().getResults());
             yourListViewReference.setAdapter(ad);
-
-            /*View footerView = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.activity_productlist_footer, null, false);
-
-            yourListViewReference.addFooterView(footerView, null, false);*/
         }
 
     }

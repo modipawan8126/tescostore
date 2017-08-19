@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/colorWhite"
+    android:padding="5dip"
+    android:layout_margin="10px">
+    <!--<ImageView android:id="@+id/productImage"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_centerHorizontal="true"/>-->
+    <!--<LinearLayout
+        android:id="@+id/storeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">-->
+    <TextView
+        android:id="@+id/storeNameAdapter"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="marquee"
+        android:gravity="center_horizontal"
+        android:inputType="textMultiLine"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:textSize="40px"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/storeAddress1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/storeNameAdapter"
+        android:ellipsize="marquee"
+        android:gravity="center_horizontal"
+        android:inputType="textMultiLine"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:textSize="40px" />
+
+    <TextView
+        android:id="@+id/storeAddress2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/storeAddress1"
+        android:ellipsize="marquee"
+        android:gravity="center_horizontal"
+        android:inputType="textMultiLine"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:textSize="40px" />
+
+    <TextView
+        android:id="@+id/storeTown"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/storeAddress2"
+        android:ellipsize="marquee"
+        android:gravity="center_horizontal"
+        android:inputType="textMultiLine"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:textSize="40px" />
+
+    <TextView
+        android:id="@+id/storePostCode"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/storeTown"
+        android:ellipsize="marquee"
+        android:gravity="center_horizontal"
+        android:inputType="textMultiLine"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:textSize="40px" />
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_below="@+id/storePostCode">
+
+        <TextView
+            android:id="@+id/storePhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/storePostCode"
+            android:ellipsize="marquee"
+            android:gravity="center"
+            android:layout_marginTop="25px"
+            android:layout_marginLeft="120px"
+            android:inputType="textMultiLine"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:textSize="40px" />
+
+        <ImageView
+            android:id="@+id/storeMap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/storePhone"
+            android:background="@mipmap/storemap"
+            android:layout_marginLeft="40px"
+            android:layout_marginBottom="0px"
+            android:foregroundGravity="right" />
+    </LinearLayout>
+
+    <!--<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/productNameAdapter"
+        android:weightSum="2.0" >
+
+        <TextView
+
+            android:id="@+id/productPriceAdapter"
+            android:layout_width="101dp"
+            android:layout_height="50dp"
+
+            android:gravity="center"
+            android:paddingBottom="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="5dp"
+
+            android:textColor="#D0703D"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="1dp"
+            android:layout_height="50dp"
+            android:layout_above="@+id/feedList"
+            android:layout_toRightOf="@+id/headerText"
+            android:background="#d3d3d3" />
+
+        <TextView
+
+            android:id="@+id/productPromotionAdapter"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/view"
+            android:gravity="center"
+            android:paddingBottom="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="5dp"
+            android:textColor="#454544"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </LinearLayout>-->
+</RelativeLayout>
