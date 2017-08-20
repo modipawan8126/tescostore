@@ -37,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.storeLocator:
                 openStoreLocator();
                 return true;
+            case R.id.about:
+                openAbout();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -45,6 +48,12 @@ public class MainActivity extends AppCompatActivity {
     private void openStoreLocator() {
         Log.d(this.getClass().getSimpleName(), "Opening StoreLocator Activity");
         Intent intent = new Intent(MainActivity.this, StoreLocatorActivity.class);
+        startActivity(intent);
+    }
+
+    private void openAbout() {
+        Log.d(this.getClass().getSimpleName(), "Opening About Activity");
+        Intent intent = new Intent(MainActivity.this, AboutActivity.class);
         startActivity(intent);
     }
 
