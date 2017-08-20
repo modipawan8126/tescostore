@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            storeFile file('D:/Projects/Android/keystore/android.jks')
+            keyAlias 'myandroidkey'
+            keyPassword 'abcd1234!'
+            storePassword 'abcd1234!'
+        }
+    }
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
@@ -16,8 +24,15 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField 'int', 'limit', '10'
-        }
+            signingConfig signingConfigs.config
 
+            buildConfigField 'int', 'limit', '10'
+            buildConfigField 'String', 'tescoSubscriptionKey', '"Ocp-Apim-Subscription-Key"'
+            buildConfigField 'String', 'tescoSubscriptionValue', '"6ca323f879bd4893bcb961480a0c618f"'
+            buildConfigField 'String', 'GROCERY_SEARCH_SERVICE_URL', '"https://dev.tescolabs.com/grocery/products/?"'
+            buildConfigField 'String', 'PRODUCT_DETAIL_SERVICE_URL', '"https://dev.tescolabs.com/product/?tpnb="'
+            buildConfigField 'String', 'STORE_SEARCH_SERVICE_URL', '"https://dev.tescolabs.com/locations/search?"'
+        }
         debug {
             buildConfigField 'int', 'limit', '10'
             buildConfigField 'String', 'tescoSubscriptionKey', '"Ocp-Apim-Subscription-Key"'
@@ -30,7 +45,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
