@@ -3,6 +3,8 @@ package tesco.pm.tescostore.cache;
 import java.io.Serializable;
 import java.util.List;
 
+import tesco.pm.tescostore.domain.search.result.product.Results;
+
 
 /**
  * Created by pmodi4 on 7/23/2017.
@@ -21,6 +23,8 @@ public class MemoryCache implements Serializable {
     String storeSearchQuery;
     int storeSearchOffset;
     int storeResultCount;
+
+    Results productResult;
 
     String identityAccessToken;
 
@@ -89,5 +93,13 @@ public class MemoryCache implements Serializable {
 
     public void setIdentityAccessToken(String identityAccessToken) {
         this.identityAccessToken = identityAccessToken;
+    }
+
+    public Results getProductResult() {
+        return productResult;
+    }
+
+    public void setProductResult(Results productResult) {
+        this.productResult = productResult;
     }
 }

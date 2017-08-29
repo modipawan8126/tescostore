@@ -7,7 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -15,6 +17,7 @@ import com.squareup.picasso.Picasso;
 import tesco.pm.tescostore.MapActivity;
 import tesco.pm.tescostore.ProductDetailActivity;
 import tesco.pm.tescostore.R;
+import tesco.pm.tescostore.cache.MemoryCache;
 import tesco.pm.tescostore.constant.Constants;
 import tesco.pm.tescostore.domain.search.result.store.Results;
 
@@ -81,6 +84,18 @@ public class StoreAdapter extends BaseAdapter {
         TextView storePhone = (TextView) convertView.findViewById(R.id.storePhone);
         storePhone.setText(result.getLocation().getContact().getPhoneNumbers().get(0).getNumber());
 
+        RadioButton selectStore = (RadioButton) convertView.findViewById(R.id.selectStore);
+        if (MemoryCache.getInstance().getProductResult() == null) {
+            selectStore.setVisibility(View.GONE);
+        } else {
+            selectStore.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    openProductDetailActivity(MemoryCache.getInstance().getProductResult(), result);
+                }
+            });
+        }
+
         final double lat = result.getLocation().getGeo().getCoordinates().getLatitude();
         final double lng = result.getLocation().getGeo().getCoordinates().getLongitude();
 
@@ -99,6 +114,18 @@ public class StoreAdapter extends BaseAdapter {
 
 
         return convertView;
+    }
+
+
+    private void openProductDetailActivity(tesco.pm.tescostore.domain.search.result.product.Results result, Results storeResult) {
+        MemoryCache.getInstance().setProductResult(result);
+        Intent intent = new Intent(con, ProductDetailActivity.class);
+        intent.putExtra(Constants.PRODUCT_TPNB, result.getTpnb());
+        intent.putExtra(Constants.PRODUCT_IMAGE_URL, result.getImage());
+        intent.putExtra(Constants.PRODUCT_NAME, result.getName());
+        intent.putExtra(Constants.PRODUCT_PRICE, result.getPrice());
+        intent.putExtra(Constants.STORE_ID, storeResult.getLocation().getAltIds().getBranchNumber());
+        con.startActivity(intent);
     }
 
 }

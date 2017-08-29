@@ -1,8 +1,16 @@
 package tesco.pm.tescostore;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,6 +21,7 @@ import java.util.List;
 
 import tesco.pm.tescostore.adapter.ProductAttributeAdapter;
 import tesco.pm.tescostore.adapter.ProductAttributeObject;
+import tesco.pm.tescostore.cache.MemoryCache;
 import tesco.pm.tescostore.constant.Constants;
 import tesco.pm.tescostore.domain.product.detail.ProductDetailResult;
 import tesco.pm.tescostore.domain.product.location.ProductLocationResponse;
@@ -29,7 +38,44 @@ public class ProductDetailActivity extends AppCompatActivity {
 
     private ProductSearchManager searchManager;
 
+    private  String tpnb;
+
     private ProductLocationManager productLocationManager;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.storeLocator:
+                openStoreLocator();
+                return true;
+            case R.id.about:
+                openAbout();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void openStoreLocator() {
+        Log.d(this.getClass().getSimpleName(), "Opening StoreLocator Activity");
+        Intent intent = new Intent(ProductDetailActivity.this, StoreLocatorActivity.class);
+        intent.putExtra("tpnb", tpnb);
+        startActivity(intent);
+    }
+
+    private void openAbout() {
+        Log.d(this.getClass().getSimpleName(), "Opening About Activity");
+        Intent intent = new Intent(ProductDetailActivity.this, AboutActivity.class);
+        startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,23 +83,31 @@ public class ProductDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_productdetail);
 
         Bundle bundle = getIntent().getExtras();
-        String tpnb = bundle.get(Constants.PRODUCT_TPNB).toString();
+        tpnb = bundle.get(Constants.PRODUCT_TPNB).toString();
         String imgUrl = bundle.get(Constants.PRODUCT_IMAGE_URL).toString();
         String productName = bundle.get(Constants.PRODUCT_NAME).toString();
         String productPrice = bundle.get(Constants.PRODUCT_PRICE).toString();
+        final Object storeIdObj = bundle.get(Constants.STORE_ID);
+
+        Button checkProductLocation = (Button) findViewById(R.id.productLocation);
+
+        if (storeIdObj == null) {
+            checkProductLocation.setVisibility(View.GONE);
+        } else {
+            Log.d(this.getClass().getSimpleName(), "StoreID " + storeIdObj.toString());
+            checkProductLocation.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    getProductLocation(storeIdObj.toString());
+                }
+            });
+
+        }
 
         searchManager = new ProductSearchManager();
         ProductDetailResult productDetailResult =  searchManager.fetchProductDetail(tpnb);
         List<ProductAttributeObject> attributeList = prepareProductAttributeMap(productDetailResult);
         attributeList.add(new ProductAttributeObject(Constants.PRODUCT_PRICE, productPrice, null));
-
-       /* productLocationManager = new ProductLocationManager();
-        ProductLocationResponse productLocationResponse = productLocationManager.fetchProductLocation(tpnb);
-        if (productLocationResponse != null) {
-            Log.d(this.getClass().getSimpleName(), productLocationResponse.getModuleNumber());
-        }*/
-
-
 
         ImageView productDetailImg = (ImageView) findViewById(R.id.productDetailImage);
         String finalImageUrl = imgUrl.replace("http", "https").replace("90x90", "540x540");
@@ -75,6 +129,34 @@ public class ProductDetailActivity extends AppCompatActivity {
 
 
 
+    }
+
+    private void getProductLocation(String storeId) {
+        productLocationManager = new ProductLocationManager();
+        ProductLocationResponse productLocationResponse = productLocationManager.fetchProductLocation(tpnb, storeId);
+        if (productLocationResponse != null) {
+            Log.d(this.getClass().getSimpleName(), productLocationResponse.getModuleNumber());
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            alertDialogBuilder.setTitle("Product Location in Store " + storeId);
+
+            alertDialogBuilder.setCancelable(false)
+                    .setPositiveButton("close",new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog,int id) {
+                            ProductDetailActivity.this.finish();
+                        }
+                    });
+            StringBuilder sb = new StringBuilder();
+            sb.append("Aisle:").append(productLocationResponse.getAisle()).append("\n")
+              .append("Mod:").append(productLocationResponse.getModuleNumber()).append("\n")
+              .append("Shelf:").append(productLocationResponse.getShelfNumber());
+            alertDialogBuilder.setMessage(sb.toString());
+            /*TextView location = new TextView(this);
+            location.setText(sb.toString());
+            alertDialogBuilder.setView(location);*/
+
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+        }
     }
 
     private List<ProductAttributeObject> prepareProductAttributeMap(ProductDetailResult pdr) {

@@ -13,6 +13,7 @@ import com.squareup.picasso.Picasso;
 
 import tesco.pm.tescostore.ProductDetailActivity;
 import tesco.pm.tescostore.R;
+import tesco.pm.tescostore.cache.MemoryCache;
 import tesco.pm.tescostore.constant.Constants;
 import tesco.pm.tescostore.domain.search.result.product.Results;
 
@@ -95,6 +96,7 @@ public class ProductAdapter extends BaseAdapter {
     }
 
     private void openProductDetailActivity(Results result) {
+        MemoryCache.getInstance().setProductResult(result);
         Intent intent = new Intent(con, ProductDetailActivity.class);
         intent.putExtra(Constants.PRODUCT_TPNB, result.getTpnb());
         intent.putExtra(Constants.PRODUCT_IMAGE_URL, result.getImage());

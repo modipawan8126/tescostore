@@ -74,6 +74,17 @@
         android:gravity="center_horizontal"
         android:layout_below="@+id/storePostCode">
 
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <RadioButton
+                android:id="@+id/selectStore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="select"
+                android:layout_marginTop="20px"
+                android:checked="false" />
+        </RadioGroup>
         <TextView
             android:id="@+id/storePhone"
             android:layout_width="wrap_content"
@@ -82,7 +93,7 @@
             android:ellipsize="marquee"
             android:gravity="center"
             android:layout_marginTop="25px"
-            android:layout_marginLeft="120px"
+            android:layout_marginLeft="40px"
             android:inputType="textMultiLine"
             android:scrollHorizontally="true"
             android:singleLine="true"

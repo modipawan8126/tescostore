@@ -5,6 +5,7 @@ import android.util.Log;
 import com.google.gson.Gson;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
@@ -28,7 +29,7 @@ public class ProductLocationManager {
 
     }
 
-    public ProductLocationResponse fetchProductLocation(String productId) {
+    public ProductLocationResponse fetchProductLocation(String productId,String storeId) {
 
         ProductLocationResponse productLocationResponse = null;
         try {
@@ -47,9 +48,9 @@ public class ProductLocationManager {
                     Log.d(TAG, "Invalid Token, hence calling identity service to get fresh token");
                     identityServiceManager = new IdentityServiceManager();
                     MemoryCache.getInstance().setIdentityAccessToken(identityServiceManager.callIdentityServiceToGetAccessToken());
-                    fetchProductLocation(productId);
+                    fetchProductLocation(productId, storeId);
                 } else {
-                    productLocationResponse = convertProductLocationResponseJsonToObject(jsonStr);
+                    productLocationResponse = convertProductLocationResponseJsonToObject(jsonStr, productId);
                 }
             }
         } catch (InterruptedException e) {
@@ -61,12 +62,24 @@ public class ProductLocationManager {
     }
 
 
-    private ProductLocationResponse convertProductLocationResponseJsonToObject(String jsonResponse) {
+    private ProductLocationResponse convertProductLocationResponseJsonToObject(String jsonResponse, String tpnb) {
         Gson gson = new Gson();
-        ProductLocationResponse productLocationResponse = gson.fromJson(jsonResponse, ProductLocationResponse.class);
+        ProductLocationResponse productLocationResponse = gson.fromJson(dummyProductLocation(), ProductLocationResponse.class);
+//        ProductLocationResponse productLocationResponse = null;
+//        List<ProductLocationResponse> locations = (List<ProductLocationResponse>) gson.fromJson(jsonResponse, ProductLocationResponse.class);
+//        for (ProductLocationResponse res : locations) {
+//            if (res.getProductNumber().equalsIgnoreCase(tpnb)) {
+//                productLocationResponse = res;
+//            }
+//        }
         return productLocationResponse;
 
     }
 
+    private String dummyProductLocation() {
+        String json = "{\"moduleNumber\": \"9\",\"aisleOrientation\": \"L\",\"shelfNumber\": \"A\",\"productPosition\": \"2\",\"productNumber\": \"072032780\",\"aisle\": \"06\",\t\"floorCode\": \"1.0\",\"capacity\": \"8\",\"facings\": \"1\"}";
+
+        return json;
+    }
 
 }

@@ -5,12 +5,13 @@ package tesco.pm.tescostore.domain.search.result.store;
 public class Altids {
 
 
-    private int branchnumber;
-    public void setBranchnumber(int branchnumber) {
-         this.branchnumber = branchnumber;
-     }
-     public int getBranchnumber() {
-         return branchnumber;
-     }
+    private int branchNumber;
 
+    public int getBranchNumber() {
+        return branchNumber;
+    }
+
+    public void setBranchNumber(int branchNumber) {
+        this.branchNumber = branchNumber;
+    }
 }

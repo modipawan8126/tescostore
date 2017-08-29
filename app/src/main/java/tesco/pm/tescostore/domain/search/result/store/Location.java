@@ -8,7 +8,7 @@ public class Location {
     private String id;
     private String name;
 
-    private Altids altids;
+    private Altids altIds;
     private Region region;
     private Contact contact;
     private Geo geo;
@@ -31,12 +31,13 @@ public class Location {
          return name;
      }
 
-    public void setAltids(Altids altids) {
-         this.altids = altids;
-     }
-     public Altids getAltids() {
-         return altids;
-     }
+    public Altids getAltIds() {
+        return altIds;
+    }
+
+    public void setAltIds(Altids altIds) {
+        this.altIds = altIds;
+    }
 
     public void setRegion(Region region) {
          this.region = region;
