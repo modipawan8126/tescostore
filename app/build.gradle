@@ -40,6 +40,14 @@ android {
             buildConfigField 'String', 'GROCERY_SEARCH_SERVICE_URL', '"https://dev.tescolabs.com/grocery/products/?"'
             buildConfigField 'String', 'PRODUCT_DETAIL_SERVICE_URL', '"https://dev.tescolabs.com/product/?tpnb="'
             buildConfigField 'String', 'STORE_SEARCH_SERVICE_URL', '"https://dev.tescolabs.com/locations/search?"'
+
+            buildConfigField 'String', 'TESCO_IDENTITY_SERVICE_URL', '"https://identity-ppe.api.tesco.com/v3/api/auth/oauth/v2/token"'
+            buildConfigField 'String', 'TESCO_IDENTITY_SERVICE_CLIENTID', '"trn:tesco:cid:67702ab6-b32b-46cb-b18f-5c47cec68c6d:29aa5a86-c0dc-4cad-88a4-4519cd170d50"'
+            buildConfigField 'String', 'TESCO_IDENTITY_SERVICE_GRANTTYPE', '"password"'
+            buildConfigField 'String', 'TESCO_IDENTITY_SERVICE_USERNAME', '"PPM"'
+            buildConfigField 'String', 'TESCO_IDENTITY_SERVICE_PASSWORD', '"865dGFD43n!d;"'
+
+            buildConfigField 'String', 'TESCO_PRODUCT_ACTUAL_LOCATION_URL', '"https://productlocation.api.tesco.com/productlocation.service/webapi/actuallocation/stores/"'
         }
     }
 }

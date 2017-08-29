@@ -22,6 +22,8 @@ public class MemoryCache implements Serializable {
     int storeSearchOffset;
     int storeResultCount;
 
+    String identityAccessToken;
+
     private static final MemoryCache cache = new MemoryCache();
 
     private MemoryCache() {
@@ -81,4 +83,11 @@ public class MemoryCache implements Serializable {
         this.storeSearchQuery = storeSearchQuery;
     }
 
+    public String getIdentityAccessToken() {
+        return identityAccessToken;
+    }
+
+    public void setIdentityAccessToken(String identityAccessToken) {
+        this.identityAccessToken = identityAccessToken;
+    }
 }

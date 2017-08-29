@@ -2,6 +2,7 @@ package tesco.pm.tescostore;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,6 +15,9 @@ import tesco.pm.tescostore.adapter.ProductAttributeAdapter;
 import tesco.pm.tescostore.adapter.ProductAttributeObject;
 import tesco.pm.tescostore.constant.Constants;
 import tesco.pm.tescostore.domain.product.detail.ProductDetailResult;
+import tesco.pm.tescostore.domain.product.location.ProductLocationResponse;
+import tesco.pm.tescostore.identity.IdentityServiceManager;
+import tesco.pm.tescostore.manager.ProductLocationManager;
 import tesco.pm.tescostore.manager.ProductSearchManager;
 import tesco.pm.tescostore.view.ExpandableHeightListView;
 
@@ -24,6 +28,8 @@ import tesco.pm.tescostore.view.ExpandableHeightListView;
 public class ProductDetailActivity extends AppCompatActivity {
 
     private ProductSearchManager searchManager;
+
+    private ProductLocationManager productLocationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +46,14 @@ public class ProductDetailActivity extends AppCompatActivity {
         ProductDetailResult productDetailResult =  searchManager.fetchProductDetail(tpnb);
         List<ProductAttributeObject> attributeList = prepareProductAttributeMap(productDetailResult);
         attributeList.add(new ProductAttributeObject(Constants.PRODUCT_PRICE, productPrice, null));
+
+       /* productLocationManager = new ProductLocationManager();
+        ProductLocationResponse productLocationResponse = productLocationManager.fetchProductLocation(tpnb);
+        if (productLocationResponse != null) {
+            Log.d(this.getClass().getSimpleName(), productLocationResponse.getModuleNumber());
+        }*/
+
+
 
         ImageView productDetailImg = (ImageView) findViewById(R.id.productDetailImage);
         String finalImageUrl = imgUrl.replace("http", "https").replace("90x90", "540x540");

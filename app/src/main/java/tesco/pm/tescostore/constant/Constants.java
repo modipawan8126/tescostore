@@ -37,6 +37,10 @@ public class Constants {
     public static final String LATITUDE = "latitude";
     public static final String LONGITUDE = "longitude";
 
+    public static final String REQUEST_BODY = "requestBody";
+    public static final String INVALID_TOKEN = "Invalid Token";
+    public static final String ACCESS_TOKEN = "access_token";
+
 
 
 
