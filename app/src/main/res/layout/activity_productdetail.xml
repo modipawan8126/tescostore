@@ -38,14 +38,27 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10px" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center">
+            <Button
+                android:id="@+id/selectStore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="Select Store"
+                android:layout_marginTop="10px"/>
 
             <Button
                 android:id="@+id/productLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical|center_horizontal"
-                android:text="Check Product Location"
+                android:text="Prod Location"
                 android:layout_marginTop="10px"/>
+            </LinearLayout>
 
             <!--<ListView
                 android:id="@+id/productAttributeList"

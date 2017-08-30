@@ -40,6 +40,8 @@ public class ProductDetailActivity extends AppCompatActivity {
 
     private  String tpnb;
 
+    private AlertDialog alertDialog;
+
     private ProductLocationManager productLocationManager;
 
     @Override
@@ -89,8 +91,16 @@ public class ProductDetailActivity extends AppCompatActivity {
         String productPrice = bundle.get(Constants.PRODUCT_PRICE).toString();
         final Object storeIdObj = bundle.get(Constants.STORE_ID);
 
-        Button checkProductLocation = (Button) findViewById(R.id.productLocation);
+        Button selectStore = (Button) findViewById(R.id.selectStore);
+        selectStore.setOnClickListener(new View.OnClickListener() {
 
+            @Override
+            public void onClick(View v) {
+                openStoreLocator();
+            }
+        });
+
+        Button checkProductLocation = (Button) findViewById(R.id.productLocation);
         if (storeIdObj == null) {
             checkProductLocation.setVisibility(View.GONE);
         } else {
@@ -142,23 +152,24 @@ public class ProductDetailActivity extends AppCompatActivity {
             alertDialogBuilder.setCancelable(false)
                     .setPositiveButton("close",new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog,int id) {
-                            ProductDetailActivity.this.finish();
+                            closeDialog();
                         }
                     });
             StringBuilder sb = new StringBuilder();
-            sb.append("Aisle:").append(productLocationResponse.getAisle()).append("\n")
-              .append("Mod:").append(productLocationResponse.getModuleNumber()).append("\n")
-              .append("Shelf:").append(productLocationResponse.getShelfNumber());
+            sb.append("Aisle|").append(productLocationResponse.getAisle()).append(",  productPosition|").append(productLocationResponse.getProductPosition()).append("\n")
+              .append("Mod|").append(productLocationResponse.getModuleNumber()).append(",  productNumber|").append(productLocationResponse.getProductNumber()).append("\n")
+              .append("Shelf|").append(productLocationResponse.getShelfNumber()).append(",  aisleOrientation|").append(productLocationResponse.getAisleOrientation()).append("\n")
+            .append("facings|").append(productLocationResponse.getFacings()).append(",  capacity|").append(productLocationResponse.getCapacity());
             alertDialogBuilder.setMessage(sb.toString());
-            /*TextView location = new TextView(this);
-            location.setText(sb.toString());
-            alertDialogBuilder.setView(location);*/
 
-            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog = alertDialogBuilder.create();
             alertDialog.show();
         }
     }
 
+    private void closeDialog() {
+        alertDialog.dismiss();
+    }
     private List<ProductAttributeObject> prepareProductAttributeMap(ProductDetailResult pdr) {
         /*Map<String, Map<String, String>> attributes = new HashMap<String, Map<String, String>>();*/
         List<ProductAttributeObject> attributeList = new ArrayList<ProductAttributeObject>();

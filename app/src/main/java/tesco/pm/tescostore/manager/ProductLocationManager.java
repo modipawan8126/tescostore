@@ -33,11 +33,15 @@ public class ProductLocationManager {
 
         ProductLocationResponse productLocationResponse = null;
         try {
+            identityServiceManager = new IdentityServiceManager();
+            if (MemoryCache.getInstance().getIdentityAccessToken() == null) {
+                MemoryCache.getInstance().setIdentityAccessToken(identityServiceManager.callIdentityServiceToGetAccessToken());
+            }
             StringBuilder urlSb = new StringBuilder();
             urlSb.append(BuildConfig.TESCO_PRODUCT_ACTUAL_LOCATION_URL).append("2843?productID=").append(productId);
+            //urlSb.append(BuildConfig.TESCO_PRODUCT_ACTUAL_LOCATION_URL).append(storeId).append("?productID=").append(productId);
 
             Map<String, String> queryData = new HashMap<String, String>();
-            //queryData.put(Constants.SEARCH_QUERY, queryString);
             queryData.put(Constants.SERVICE_URL, urlSb.toString());
             queryData.put(Constants.HTTP_METHOD, "GET");
             queryData.put(Constants.ACCESS_TOKEN, MemoryCache.getInstance().getIdentityAccessToken());
@@ -46,7 +50,6 @@ public class ProductLocationManager {
             if (jsonStr != null && jsonStr.trim().length() != 0) {
                 if (jsonStr.contains(Constants.INVALID_TOKEN)) {
                     Log.d(TAG, "Invalid Token, hence calling identity service to get fresh token");
-                    identityServiceManager = new IdentityServiceManager();
                     MemoryCache.getInstance().setIdentityAccessToken(identityServiceManager.callIdentityServiceToGetAccessToken());
                     fetchProductLocation(productId, storeId);
                 } else {
